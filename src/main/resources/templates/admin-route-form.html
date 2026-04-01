@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${route != null} ? 'Edit Route — SkyWay Admin' : 'Add Route — SkyWay Admin'">Route Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}"><span class="brand-icon">✈</span> SkyWay</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/admin/routes}">Routes</a></li>
+                    <li class="nav-item ms-1"><a class="nav-link btn" th:href="@{/logout}">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 th:text="${route != null} ? 'Edit Route' : 'Add Route'">Route Form</h1>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-header gradient-header">Route Details</div>
+                    <div class="card-body p-4">
+                        <form th:action="${route != null} ? @{'/admin/routes/edit/' + ${route.id}} : @{/admin/routes/add}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">Route Name</label>
+                                <input type="text" class="form-control" name="routeName" th:value="${route?.routeName}" placeholder="e.g., Dhaka - Dubai" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Origin</label>
+                                <input type="text" class="form-control" name="origin" th:value="${route?.origin}" placeholder="e.g., Dhaka" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Destination</label>
+                                <input type="text" class="form-control" name="destination" th:value="${route?.destination}" placeholder="e.g., Dubai" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Distance (km)</label>
+                                <input type="number" step="0.1" class="form-control" name="distanceKm" th:value="${route?.distanceKm}" placeholder="e.g., 4500">
+                            </div>
+                            <div class="mb-4" th:if="${route == null}">
+                                <label class="form-label">Parent Route <small class="text-muted">(for sub-routes)</small></label>
+                                <select class="form-select" name="parentRouteId">
+                                    <option value="">None (Top-level route)</option>
+                                    <option th:each="pr : ${parentRoutes}" th:value="${pr.id}" th:text="${pr.routeName}"></option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-accent flex-fill" th:text="${route != null} ? 'Update' : 'Add Route'">Save</button>
+                                <a th:href="@{/admin/routes}" class="btn btn-outline-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2026 SkyWay Admin</p></div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+/* ============================================
+   Microsoft Fluent UI — Web Application Redesign
+   Clean, Professional, Accessible Dashboard
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+
+/* ============ CSS VARIABLES ============ */
+:root {
+    /* Fluent UI Color Palette (Light Theme) */
+    --bg: #faf9f8;            /* Main body background */
+    --bg-card: #ffffff;       /* Card and widget backgrounds */
+    --bg-dark: #f3f2f1;       /* Very light gray for headers/footers */
+    --bg-light: #edebe9;      /* Hover states on light backgrounds */
+    
+    --primary: #0078d4;       /* Core Microsoft Blue */
+    --primary-light: #106ebe; /* Darker blue for hover states */
+    --primary-glow: rgba(0, 120, 212, 0.2);
+    
+    --accent: #0078d4;        /* Using same brand blue for generic accents */
+    --accent-glow: rgba(0, 120, 212, 0.2);
+
+    --success: #107c10;       /* Fluent Success Green */
+    --danger: #d13438;        /* Fluent Error Red */
+    --warning: #d83b01;       /* Fluent Warning Orange */
+
+    /* Typographic Colors */
+    --text-global: #201f1e;   /* Primary dark text */
+    --text: #323130;          /* Standard body text */
+    --text-secondary: #605e5c; /* Secondary labels */
+    --text-muted: #a19f9d;
+
+    --border: #edebe9;        /* Soft neutral border */
+    --border-strong: #c8c6c4; /* Focus or strong border */
+
+    /* Minimalist border radii */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 4px;
+    --radius-xl: 4px;         /* Standardized to 4px across main cards */
+    --radius-full: 4px;       /* In Fluent, buttons are rarely pill-shaped */
+
+    /* WIDGET SHADOWS - Fluent Elevation */
+    --widget-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+    --widget-inset: none;     /* Removed glassy inset */
+    --widget-pressed: none;   /* Removed glassy pressed state */
+
+    --transition: all 0.1s ease-out; /* Fluent dictates very fast, snappy transitions */
+    --transition-fast: all 0.1s ease-out;
+}
+
+/* ============ GLOBAL ============ */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text-global);
+    min-height: 100vh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+}
+
+::selection {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+/* ============ UTILS / CARDS ============ */
+.clay-box, .card, .auth-card, .search-card, .schedule-card, .ticket-card, .stat-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--widget-shadow);
+    border: 1px solid var(--border);
+    color: var(--text);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.clay-box-dark, .card-header.gradient-header, .ticket-header {
+    background: var(--bg-card);
+    color: var(--text-global);
+    border-radius: 0;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+    background: #ffffff !important;
+    padding: 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132); /* Fluent Header Shadow */
+    height: 48px; /* Standard MS header height */
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar .container {
+    height: 100%;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-global) !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+}
+
+.brand-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.navbar-nav {
+    height: 100%;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    font-weight: 400;
+    color: var(--text-global) !important;
+    padding: 0 16px !important;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: var(--bg-dark);
+}
+
+.nav-link.btn, .nav-link.btn-clay {
+    background: transparent !important;
+    color: var(--text-global) !important;
+    box-shadow: none;
+    padding: 0 16px !important;
+    margin: 0;
+}
+.nav-link.btn:hover {
+    background-color: var(--bg-dark) !important;
+    transform: none;
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-lg {
+    height: 40px;
+    font-size: 16px;
+}
+
+.btn:active {
+    transform: none;
+}
+
+.btn-primary, .btn-accent, .btn-book {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff !important;
+    box-shadow: none;
+}
+
+.btn-primary:hover, .btn-accent:hover, .btn-book:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: none;
+}
+
+.btn-light {
+    background: #ffffff;
+    color: var(--text);
+    border: 1px solid var(--text-secondary);
+}
+.btn-light:hover {
+    background: var(--bg-dark);
+    transform: none;
+}
+
+/* ============ HERO SECTION ============ */
+.hero-section {
+    padding: 3rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-box {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #ffffff;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-global);
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    font-weight: 400;
+}
+
+/* ============ CARDS (Widgets) ============ */
+.card {
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--widget-shadow);
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108);
+}
+
+.card-header {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-global);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* ============ SEARCH CARD ============ */
+.search-card {
+    padding: 2rem;
+    margin-top: -2rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* ============ FORMS ============ */
+.form-control, .form-select {
+    background: #ffffff;
+    border: 1px solid var(--text-secondary);
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text);
+    box-shadow: none;
+    transition: var(--transition);
+    height: 32px;
+}
+
+.form-control:focus, .form-select:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    background: #ffffff;
+    padding-bottom: 5px; /* Offset to prevent jump */
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-global);
+    margin-bottom: 4px;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.input-group-text {
+    background: var(--bg-dark);
+    border: 1px solid var(--text-secondary);
+    border-right: none;
+    color: var(--text-secondary);
+    font-weight: 400;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    font-size: 14px;
+}
+
+/* ============ SCHEDULE & RESULT CARDS ============ */
+.schedule-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.schedule-card:hover {
+    transform: none;
+    background-color: var(--bg-dark);
+}
+
+.fare-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-global);
+}
+
+/* ============ SEAT SELECTION GRID ============ */
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    max-width: 300px;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+.seat-item input[type="radio"] { position: absolute; opacity: 0; }
+
+.seat-item label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-global);
+    cursor: pointer;
+    box-shadow: none;
+    transition: var(--transition-fast);
+}
+
+.seat-item label:hover {
+    transform: none;
+    background: var(--bg-dark);
+}
+
+/* Pressed state for selected seats (Microsoft Blue) */
+.seat-item input[type="radio"]:checked + label {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    transform: none;
+}
+
+/* Booked seats are physically recessed but disabled */
+.seat-booked label {
+    background: var(--bg-light) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-muted) !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+/* ============ AUTH / TICKET ============ */
+.auth-container {
+    padding: 3rem 1rem;
+    min-height: calc(100vh - 48px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.auth-card {
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 5vh;
+}
+
+.auth-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.ticket-container {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.ticket-header {
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-dark);
+}
+
+.ticket-header h2 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.ticket-body {
+    padding: 2rem 1.5rem;
+    position: relative;
+    background: #ffffff;
+}
+
+/* ============ ADMIN DASHBOARD ============ */
+.stat-card {
+    padding: 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-global);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-weight: 400;
+    color: var(--text-secondary);
+    text-transform: none;
+    font-size: 13px;
+}
+
+/* ============ TABLES ============ */
+.table {
+    border-collapse: collapse;
+    color: var(--text);
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.table thead th {
+    background: #ffffff;
+    color: var(--text-global);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+    text-transform: none;
+    letter-spacing: normal;
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.table tbody tr {
+    background: #ffffff;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.table tbody tr:hover {
+    background: var(--bg-dark);
+    transform: none;
+}
+
+.table td {
+    padding: 12px;
+    border: none;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.table td:first-child, .table td:last-child { 
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+}
+
+/* ============ ALERTS / BADGES ============ */
+.alert {
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    box-shadow: var(--widget-shadow);
+    border: 1px solid transparent; /* Defined specifically below */
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.alert-success { background: #dfebd0; color: var(--text-global); border-left: 4px solid var(--success); }
+.alert-danger { background: #fdf3f4; color: var(--text-global); border-left: 4px solid var(--danger); }
+.alert-info { background: #f3f2f1; color: var(--text-global); border-left: 4px solid var(--primary); }
+
+.alert-link { color: var(--primary); font-weight: 600; text-decoration: none; }
+.alert-link:hover { text-decoration: underline; }
+
+.badge {
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 12px;
+    background: var(--bg-dark);
+    color: var(--text-global);
+    border: none;
+}
+
+.badge-ac { background: #cce3f5; color: #004578; }
+.badge-luxury { background: #fce100; color: #201f1e; }
+.badge-regular { background: #dff6dd; color: #054b16; }
+
+/* ============ PAGE HEADERS ============ */
+.page-header {
+    padding: 2rem 0;
+    text-align: left;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-global);
+    margin: 0;
+}
+
+.page-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.text-muted { color: var(--text-secondary) !important; }
+.text-muted-custom { color: var(--text-secondary); }
+.section-title { font-weight: 600; font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-global); }
+
+/* ============ VIEWER OVERRIDES ============ */
+/* Removed deep dark styles for viewer, switching to clean MS look */
+.viewer-container {
+    background: #ffffff !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--widget-shadow) !important;
+    border-radius: var(--radius-md) !important;
+}
+.viewer-header, .viewer-legend, .section-tabs {
+    background: #ffffff !important;
+    border-color: var(--border) !important;
+    color: var(--text-global) !important;
+}
+.viewer-btn, .section-tab {
+    background: transparent !important;
+    color: var(--text-global) !important;
+    border: 1px solid var(--text-secondary) !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 4px 12px !important;
+}
+.viewer-btn:hover, .section-tab:hover {
+    background: var(--bg-dark) !important;
+    color: var(--text-global) !important;
+}
+.viewer-btn.active, .section-tab.active {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    border-color: var(--primary) !important;
+}
+.viewer-legend {
+    border-top: 1px solid var(--border) !important;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Info card in 3D viewer */
+.viewer-info-card {
+    background: #ffffff !important;
+    color: var(--text-global) !important;
+    border: 1px solid var(--border);
+    box-shadow: var(--widget-shadow);
+    border-radius: var(--radius-md) !important;
+}
+.viewer-info-card p {
+    color: var(--text-secondary) !important;
+}
+.viewer-info-card .info-icon {
+    background: var(--bg-dark) !important;
+    color: var(--primary) !important;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2rem; }
+    .hero-box { padding: 2.5rem 1rem; }
+    .page-header { padding: 1.5rem 0; }
+    .page-header h1 { font-size: 1.5rem; }
+}

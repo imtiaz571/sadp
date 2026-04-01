@@ -1,0 +1,19 @@
+# Build output
+target/
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+build_output.txt
+query_result.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper jar (optional, can keep for CI)
+# .mvn/wrapper/maven-wrapper.jar
