@@ -1,4 +1,4 @@
-# 🎨 Design Patterns Applied in Bus Ticket Management System
+# 🎨 Design Patterns Applied in plane Ticket Management System
 
 This document explains **how and where** each design pattern was applied in the project.
 These are not just "demo" implementations — they are integral to the business logic.
