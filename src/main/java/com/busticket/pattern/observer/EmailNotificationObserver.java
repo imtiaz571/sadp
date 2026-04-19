@@ -5,13 +5,7 @@ import com.busticket.entity.Notification;
 import com.busticket.repository.NotificationRepository;
 import org.springframework.stereotype.Component;
 
-/**
- * OBSERVER PATTERN: EmailNotificationObserver
- * 
- * Simulates sending an email notification when a booking is created.
- * In production, this would integrate with an email service (e.g., JavaMailSender).
- * For this demo, it saves a notification record to the database.
- */
+
 @Component
 public class EmailNotificationObserver implements BookingObserver {
 
