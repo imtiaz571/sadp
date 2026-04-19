@@ -2,26 +2,10 @@ package com.busticket.pattern.factory;
 
 import com.busticket.entity.Bus;
 
-/**
- * FACTORY PATTERN: BusFactory
- * 
- * Creates different types of Bus objects (AC, LUXURY, REGULAR) with
- * pre-configured default settings based on the bus type.
- * 
- * Usage: Instead of creating Bus objects directly in controllers,
- * we delegate creation to this factory which encapsulates the
- * creation logic and sets appropriate defaults.
- */
+
 public class BusFactory {
 
-    /**
-     * Creates a Bus with type-specific defaults.
-     *
-     * @param type      The type of bus: "AC", "LUXURY", or "REGULAR"
-     * @param busName   Name of the bus
-     * @param busNumber Registration number of the bus
-     * @return A fully configured Bus object
-     */
+   
     public static Bus createBus(String type, String busName, String busNumber) {
         return switch (type.toUpperCase()) {
             case "AC" -> createAcBus(busName, busNumber);
