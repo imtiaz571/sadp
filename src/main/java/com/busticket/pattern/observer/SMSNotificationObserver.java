@@ -5,12 +5,7 @@ import com.busticket.entity.Notification;
 import com.busticket.repository.NotificationRepository;
 import org.springframework.stereotype.Component;
 
-/**
- * OBSERVER PATTERN: SMSNotificationObserver
- * 
- * Simulates sending an SMS notification when a booking is created.
- * In production, this would integrate with an SMS gateway (e.g., Twilio).
- */
+
 @Component
 public class SMSNotificationObserver implements BookingObserver {
 
